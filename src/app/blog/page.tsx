@@ -93,12 +93,12 @@ export default async function BlogPage() {
   `);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mb-15">
          <h2 className="text-2xl md:text-3xl font-semibold tracking-widest text-[#D0FF71] uppercase mb-6">
       Blogs
     </h2>
 
-      <BentoGrid className="gap-8 md:auto-rows-[20rem]">
+      <BentoGrid className="gap-8 md:auto-rows-[25rem] py-4" >
         {posts.map((post, i) => {
        
           const spanClass = i % 3 === 0 ? "md:col-span-2" : "md:col-span-1";
