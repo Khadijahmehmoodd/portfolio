@@ -15,7 +15,7 @@ export function HeroSection() {
 
   <div className="relative z-10 flex flex-col justify-center items-start h-full px-6 md:px-20 gap-10">
     <motion.h1
-      initial={{ opacity: 0.5, y: 100 }}
+      initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
         delay: 0.3,
