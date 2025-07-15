@@ -50,7 +50,17 @@ export function ProjectSection() {
                 height={600}
                 className="w-full h-[250px] sm:h-[300px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-3xl"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 sm:p-6">
+              {/* <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 sm:p-6"> */}
+                {/* <div className="absolute inset-0 bg-black bg-opacity-60 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 sm:p-6"> */}
+              <div className="absolute inset-0 bg-black bg-opacity-60 
+                opacity-0 
+                group-hover:opacity-100 
+                transition-opacity duration-500 
+                flex flex-col justify-end 
+                p-4 sm:p-6 
+                pointer-events-none group-hover:pointer-events-auto"
+              >
+
                 <div className="bg-black bg-opacity-70 rounded-xl p-4 sm:p-6 max-w-[90%] mx-auto">
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
                     {project.title}
