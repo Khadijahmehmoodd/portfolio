@@ -9,14 +9,15 @@ import BlogPage from "./blog/page";
 
 export default function Home() {
   return (
-    <main className=" px-6 py:6">
+    <main className=" px-2 py-2">
       <HeroSection />
       <AboutMe/>
    <TimelineSection/>
       <Tools/>
      <ProjectSection/>
-     <ContactForm/>
      <BlogPage/>
+     <ContactForm/>
+     
       
     </main>
   );

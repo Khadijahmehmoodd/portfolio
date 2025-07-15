@@ -31,11 +31,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-         {/* <div className="fixed inset-0 -z-10">
-          <div className="absolute top-[-20%] left-[-10%] w-[1200px] h-[1200px] bg-gradient-radial from-[#7b2cbf] via-[#3a0ca3] to-transparent opacity-30 blur-3xl" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[1000px] h-[1000px] bg-gradient-radial from-[#4cc9f0] via-[#4361ee] to-transparent opacity-20 blur-2xl" />
-        </div> */}
-        <div className=" "></div>
         <Navbar/>
         {children}
       
