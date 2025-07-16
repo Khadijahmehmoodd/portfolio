@@ -8,7 +8,7 @@ const links = [
   { title: "About me", href: "/#about" },
   { title: "Experience", href: "/#experience" },
   { title: "Projects", href: "/#projects" },
-  { title: "Blog", href: "/#blog" },
+  { title: "Blog", href: "/blog" },
   { title: "Contact", href: "/#contact" },
 ];
 
@@ -19,26 +19,36 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("");
 
   const handleNavClick = (href: string) => {
-    if (typeof window !== "undefined") {
-      const targetId = href.split("#")[1];
-      if (window.location.pathname !== "/") {
-        router.push(href);
-      } else {
-        const el = document.getElementById(targetId);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }
+    if (typeof window === "undefined") return;
+
+    const isHashLink = href.includes("#");
+    const [path, hash] = href.split("#");
+
+    if (!isHashLink) {
+      router.push(href); 
+      return;
+    }
+
+    if (window.location.pathname !== "/") {
+      localStorage.setItem("scrollToSection", hash);
+      router.push("/");
+    } else {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+
       const offsets = links.map((link) => {
         const id = link.href.split("#")[1];
         const el = document.getElementById(id);
-        return el ? { id: link.href, top: el.getBoundingClientRect().top + window.scrollY } : null;
+        return el ? { id: link.href, top: el.offsetTop } : null;
       });
-      const scrollPos = window.scrollY + window.innerHeight / 2;
+
       for (let i = offsets.length - 1; i >= 0; i--) {
         if (offsets[i] && scrollPos >= offsets[i]!.top) {
           setActiveSection(offsets[i]!.id);
@@ -57,24 +67,26 @@ export function Navbar() {
         scrolled ? "backdrop-blur-sm" : ""
       }`}
     >
-      {/* Desktop Navbar */}
+  
       <ul className="hidden md:flex gap-2 font-semibold text-white bg-black px-4 py-2 rounded-full">
         {links.map((link) => (
           <li key={link.title}>
-            <button
-              onClick={() => handleNavClick(link.href)}
-              className={`px-4 py-1 rounded-full transition-all duration-300 whitespace-nowrap ${
-                activeSection === link.href
-                  ? "bg-[#D0FF71] text-black"
-                  : "text-white hover:bg-[#D0FF71] hover:text-black"
-              }`}
-            >
-              {link.title.toUpperCase()}
-            </button>
+          <button
+  onClick={() => handleNavClick(link.href)}
+  className={`cursor-pointer px-4 py-1 rounded-full transition-all duration-300 whitespace-nowrap ${
+    activeSection === link.href
+      ? "bg-[#D0FF71] text-black"
+      : "text-white hover:bg-[#D0FF71] hover:text-black"
+  }`}
+>
+  {link.title.toUpperCase()}
+</button>
+
           </li>
         ))}
       </ul>
 
+      
       <div className="md:hidden flex justify-end w-full">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -84,7 +96,7 @@ export function Navbar() {
         </button>
       </div>
 
-      
+    
       {isOpen && (
         <motion.div
           initial={{ x: "-100%" }}
@@ -100,7 +112,7 @@ export function Navbar() {
                 handleNavClick(link.href);
                 setIsOpen(false);
               }}
-              className={`w-full text-left px-4 py-2 rounded-full transition-all duration-300 ${
+              className={`cursor-pointer w-full text-left px-4 py-2 rounded-full transition-all duration-300 ${
                 activeSection === link.href
                   ? "bg-[#D0FF71] text-black"
                   : "text-white hover:bg-[#D0FF71] hover:text-black"
