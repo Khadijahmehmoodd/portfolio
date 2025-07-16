@@ -86,7 +86,7 @@ export default function ContactForm() {
      
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 w-full bg-white bg-opacity-20 backdrop-blur-md border border-black/30 rounded-2xl p-6 shadow-lg"
+          className="space-y-4 w-full bg-white bg-opacity-20 backdrop-blur-md border border-black/30 rounded-2xl p-4 shadow-lg"
         >
           <input
             type="text"

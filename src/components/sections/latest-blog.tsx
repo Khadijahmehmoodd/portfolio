@@ -1,51 +1,51 @@
+"use client";
 
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image-url";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
+interface BlogPost {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt?: string;
+  mainImage?: any;
+  publishedAt: string;
+  category?: string;
+}
 
-export const revalidate = 60;
+export default function LatestBlogSection() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
 
-export default async function BlogPage() {
-  const posts: Array<{
-    _id: string;
-    title: string;
-    slug: { current: string };
-    excerpt?: string;
-    mainImage?: any;
-    publishedAt: string;
-    category?: string;
-  }> = await client.fetch(`*[_type == "post"] | order(publishedAt desc) {
-    _id,
-    title,
-    slug,
-    excerpt,
-    mainImage,
-    publishedAt,
-    category
-  }`);
+  useEffect(() => {
+    async function fetchLatest() {
+      const data: BlogPost[] = await client.fetch(
+        `*[_type == "post"] | order(publishedAt desc)[0...3] {
+          _id,
+          title,
+          slug,
+          excerpt,
+          mainImage,
+          publishedAt,
+          category
+        }`
+      );
+      setPosts(data);
+    }
+
+    fetchLatest();
+  }, []);
 
   return (
-    <section id="blog" className="py-20 bg-black text-white">
-      <div className="relative min-h-screen  w-full py-20 px-4 sm:px-6 md:px-20 bg-black text-white">
-          <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #262626 1px, transparent 1px),
-            linear-gradient(to bottom, #262626 1px, transparent 1px),
-            radial-gradient(circle at center, rgba(0,0,0,0.1), transparent 70%)
-          `,
-          backgroundSize: "20px 20px, 20px 20px, 100% 100%",
-          backgroundBlendMode: "overlay",
-        }}
-      />
+    <section id="latest-blogs" className="py-20 bg-black text-white">
+      <div className="relative w-full py-20 px-4 sm:px-6 md:px-20 bg-black text-white">
         <h2 className="text-2xl md:text-3xl font-semibold tracking-widest text-[#D0FF71] uppercase mb-6">
-      Blogs
-    </h2>
+          Latest Blogs
+        </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-40">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {posts.map((post) => (
             <Link
               key={post._id}
@@ -82,13 +82,14 @@ export default async function BlogPage() {
           ))}
         </div>
 
-    
-        <div className="mt-16 flex justify-center items-center gap-4 text-sm text-gray-400">
-          <button className="hover:text-white disabled:opacity-30" disabled>
-            ← Previous
-          </button>
-          <span className="font-medium">Page 1</span>
-          <button className="hover:text-white">Next →</button>
+       
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/blog"
+            className="inline-block bg-[#D0FF71] text-black font-semibold px-6 py-3 rounded-full hover:bg-[#ccf869] transition"
+          >
+            View All Blogs →
+          </Link>
         </div>
       </div>
     </section>
