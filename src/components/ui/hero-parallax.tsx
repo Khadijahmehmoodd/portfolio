@@ -103,24 +103,7 @@ const thirdRow = repeatedProducts.slice(10, 15);
             />
           ))}
         </motion.div>
-        {/* <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {fourthRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateX}
-              key={product.title}
-            />
-          ))}
-        </motion.div> */}
-        {/* <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {fifthRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateX}
-              key={product.title}
-            />
-          ))}
-        </motion.div> */}
+      
       </motion.div>
     </div>
   );
