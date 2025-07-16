@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
@@ -14,22 +14,25 @@ const links = [
 
 export function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const isBlogPage =
+    pathname === "/blog" || /^\/blog\/[^\/]+$/.test(pathname);
+
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
   const handleNavClick = (href: string) => {
-    if (typeof window === "undefined") return;
-
     const isHashLink = href.includes("#");
     const [path, hash] = href.split("#");
 
     if (!isHashLink) {
-      router.push(href); 
+      router.push(href);
       return;
     }
 
-    if (window.location.pathname !== "/") {
+    if (pathname !== "/") {
       localStorage.setItem("scrollToSection", hash);
       router.push("/");
     } else {
@@ -59,34 +62,39 @@ export function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <nav
-      className={`fixed top-4 left-4 z-50 px-6 py-3 flex justify-start items-center gap-2 transition-all duration-300 ${
-        scrolled ? "backdrop-blur-sm" : ""
-      }`}
-    >
-  
+  className={`fixed top-4 z-50 px-6 py-3 flex items-center gap-2 transition-all duration-300
+    ${scrolled ? "backdrop-blur-md bg-black/20" : ""}
+    ${
+      isBlogPage
+        ? "left-4 md:left-1/2 md:-translate-x-1/2 md:justify-center"
+        : "left-4 justify-start"
+    }
+  `}
+>
+
+      {/* Desktop Nav */}
       <ul className="hidden md:flex gap-2 font-semibold text-white bg-black px-4 py-2 rounded-full">
         {links.map((link) => (
           <li key={link.title}>
-          <button
-  onClick={() => handleNavClick(link.href)}
-  className={`cursor-pointer px-4 py-1 rounded-full transition-all duration-300 whitespace-nowrap ${
-    activeSection === link.href
-      ? "bg-[#D0FF71] text-black"
-      : "text-white hover:bg-[#D0FF71] hover:text-black"
-  }`}
->
-  {link.title.toUpperCase()}
-</button>
-
+            <button
+              onClick={() => handleNavClick(link.href)}
+              className={`cursor-pointer px-4 py-1 rounded-full transition-all duration-300 whitespace-nowrap ${
+                activeSection === link.href
+                  ? "bg-[#D0FF71] text-black"
+                  : "text-white hover:bg-[#D0FF71] hover:text-black"
+              }`}
+            >
+              {link.title.toUpperCase()}
+            </button>
           </li>
         ))}
       </ul>
 
-      
+      {/* Mobile Nav Toggle */}
       <div className="md:hidden flex justify-end w-full">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -96,7 +104,7 @@ export function Navbar() {
         </button>
       </div>
 
-    
+      {/* Mobile Menu */}
       {isOpen && (
         <motion.div
           initial={{ x: "-100%" }}
