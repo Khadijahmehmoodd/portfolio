@@ -9,7 +9,7 @@ import BlogPage from "./blog/page";
 
 export default function Home() {
   return (
-    <main className=" px-2 py-2">
+    <main className=" relative w-full py-4 px-1 sm:px-4 md:px-8 bg-black text-white">
       <HeroSection />
       <AboutMe/>
    <TimelineSection/>
