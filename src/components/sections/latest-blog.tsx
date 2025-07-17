@@ -83,13 +83,22 @@ export default function LatestBlogSection() {
         </div>
 
        
+
         <div className="mt-12 flex justify-center">
-          <Link
+      
+
+          <Link href="/blog">
+            <button className="mt-6 px-6 py-2 border border-[#ccf869] rounded-full text-sm font-semibold hover:bg-[#ccf869] hover:text-black transition">
+              View All Blogs →
+            </button>
+          </Link>
+
+          {/* <Link
             href="/blog"
             className="inline-block bg-[#D0FF71] text-black font-semibold px-6 py-3 rounded-full hover:bg-[#ccf869] transition"
           >
             View All Blogs →
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>
