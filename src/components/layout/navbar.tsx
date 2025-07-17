@@ -74,8 +74,8 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-4 z-50 px-6 py-3 flex items-center gap-2 transition-all duration-300
-        ${scrolled ? "backdrop-blur-md bg-black/20" : ""}
+      className={`fixed top-4 z-50 px-6 py-3 flex items-center gap-2 transition-all duration-300 border-0  rounded-full     
+           ${scrolled ? "backdrop-blur-md bg-black/5" : ""}
         ${
           isBlogPage
             ? "left-4 md:left-1/2 md:-translate-x-1/2 md:justify-center"
@@ -84,7 +84,7 @@ export function Navbar() {
       `}
     >
       {/* Desktop Nav */}
-      <ul className="hidden md:flex gap-2 font-semibold text-white bg-black px-4 py-2 rounded-full">
+      <ul className="hidden md:flex gap-2 font-semibold text-white bg-black/5 px-4 py-2 rounded-full">
         {links.map((link) => (
           <li key={link.title}>
             <button

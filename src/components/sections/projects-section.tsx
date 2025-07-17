@@ -89,9 +89,12 @@ export function ProjectSection() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center bg-[#D0FF71] text-black font-medium px-6 py-2 rounded-full hover:bg-[#ccf869] transition-colors text-sm sm:text-base"
+                      
                     >
-                      View Project ↗
+                      <button className="mt-6 px-6 py-2 border border-[#ccf869] rounded-full text-sm font-semibold hover:bg-[#ccf869] hover:text-black transition">
+                        View Project ↗
+                        </button>
+                     
                     </a>
                   </div>
                 </div>
