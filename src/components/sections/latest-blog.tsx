@@ -88,7 +88,7 @@ export default function LatestBlogSection() {
       
 
           <Link href="/blog">
-            <button className="mt-6 px-6 py-2 border border-[#ccf869] rounded-full text-sm font-semibold hover:bg-[#ccf869] hover:text-black transition">
+            <button className="mt-6 px-6 py-2 border border-[#ccf869] rounded-full text-sm font-semibold hover:bg-[#ccf869] hover:text-black transition flex items-center gap-2 cursor-pointer">
               View All Blogs →
             </button>
           </Link>
