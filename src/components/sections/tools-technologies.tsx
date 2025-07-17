@@ -37,9 +37,9 @@ const Tools = () => {
               <img
                 src={tool.src}
                 alt={tool.name}
-                className="w-full h-full object-contain grayscale hover:grayscale-0 transition"
+                className="w-full h-full object-contain grayscale hover:grayscale-0 transition flex items-center gap-2 cursor-pointer"
               />
-              <span className="absolute bottom-[-1.2rem] text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition pointer-events-none">
+              <span className="absolute bottom-[-1.2rem] text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition pointer-events flex items-center gap-2 cursor-pointer">
                 {tool.name}
               </span>
             </div>

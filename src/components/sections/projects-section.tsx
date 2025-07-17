@@ -59,7 +59,7 @@ export function ProjectSection() {
             <div
               key={index}
               data-index={index}
-              className="project-card group relative overflow-hidden rounded-3xl bg-neutral-900 shadow-lg transition-transform duration-300 hover:shadow-2xl"
+              className="project-card group relative overflow-hidden rounded-3xl bg-neutral-900 shadow-lg transition-transform duration-300 hover:shadow-2xl flex items-center gap-2 cursor-pointer"
             >
               <div className="relative w-full h-[250px] sm:h-[300px]">
                 <Image
@@ -91,7 +91,7 @@ export function ProjectSection() {
                       rel="noopener noreferrer"
                       
                     >
-                      <button className="mt-6 px-6 py-2 border border-[#ccf869] rounded-full text-sm font-semibold hover:bg-[#ccf869] hover:text-black transition">
+                      <button className="mt-6 px-6 py-2 border border-[#ccf869] rounded-full text-sm font-semibold hover:bg-[#ccf869] hover:text-black transition flex items-center gap-2 cursor-pointer">
                         View Project ↗
                         </button>
                      
