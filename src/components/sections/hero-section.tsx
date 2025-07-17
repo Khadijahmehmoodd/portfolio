@@ -49,6 +49,7 @@ export function HeroSection() {
         </motion.h1>
 
         <div className="hidden md:block">
+     
           <ResumeButton />
         </div>
       </div>

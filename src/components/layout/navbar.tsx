@@ -16,8 +16,7 @@ export function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isBlogPage =
-    pathname === "/blog" || /^\/blog\/[^\/]+$/.test(pathname);
+  const isBlogPage = pathname.startsWith("/blog");
 
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +43,13 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // ✅ Always highlight blog if on blog pages
+      if (pathname.startsWith("/blog")) {
+        setActiveSection("/blog");
+        return;
+      }
+
       const scrollPos = window.scrollY + window.innerHeight / 2;
 
       const offsets = links.map((link) => {
@@ -61,23 +67,24 @@ export function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // call once on mount
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
   return (
     <nav
-  className={`fixed top-4 z-50 px-6 py-3 flex items-center gap-2 transition-all duration-300
-    ${scrolled ? "backdrop-blur-md bg-black/20" : ""}
-    ${
-      isBlogPage
-        ? "left-4 md:left-1/2 md:-translate-x-1/2 md:justify-center"
-        : "left-4 justify-start"
-    }
-  `}
->
-
+      className={`fixed top-4 z-50 px-6 py-3 flex items-center gap-2 transition-all duration-300 border-0  rounded-full     
+           ${scrolled ? "backdrop-blur-md bg-black/5" : ""}
+        ${
+          isBlogPage
+            ? "left-4 md:left-1/2 md:-translate-x-1/2 md:justify-center"
+            : "left-4 justify-start"
+        }
+      `}
+    >
       {/* Desktop Nav */}
-      <ul className="hidden md:flex gap-2 font-semibold text-white bg-black px-4 py-2 rounded-full">
+      <ul className="hidden md:flex gap-2 font-semibold text-white bg-black/5 px-4 py-2 rounded-full">
         {links.map((link) => (
           <li key={link.title}>
             <button

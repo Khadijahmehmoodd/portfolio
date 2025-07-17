@@ -84,11 +84,11 @@ export default async function BlogPage() {
 
     
         <div className="mt-16 flex justify-center items-center gap-4 text-sm text-gray-400">
-          <button className="hover:text-white disabled:opacity-30" disabled>
+          <button className="hover:text-[#D0FF71] disabled:opacity-30" disabled>
             ← Previous
           </button>
           <span className="font-medium">Page 1</span>
-          <button className="hover:text-white">Next →</button>
+          <button className="hover:text-[#D0FF71]">Next →</button>
         </div>
       </div>
     </section>

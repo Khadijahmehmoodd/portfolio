@@ -115,10 +115,12 @@ export default function ContactForm() {
             rows={5}
             className="w-full bg-white/30 placeholder:text-gray-700 text-black p-4 rounded-md outline-1"
           />
+
           <button
             type="submit"
-            className="bg-black text-white py-3 px-8 rounded hover:bg-neutral-800 transition"
+            className=" mt-6 px-6 py-2 border-2 border-[#ccf869] rounded-full text-sm font-semibold hover:bg-[#ccf869] hover:text-black transition"
           >
+            {/* mt-6 px-6 py-2 border border-[#ccf869] rounded-full text-sm font-semibold hover:bg-[#ccf869] hover:text-black transition */}
             {submitted ? "Sent ✔" : "Submit"}
           </button>
         </form>
