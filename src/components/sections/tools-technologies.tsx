@@ -4,7 +4,7 @@ import React from "react";
 const tools = [
   { name: "Docker", src: "https://cdn.simpleicons.org/docker" },
   { name: "Node.js", src: "https://cdn.simpleicons.org/nodedotjs" },
-  { name: "Next.js", src: "https://cdn.simpleicons.org/nextdotjs" },
+  // { name: "Next.js", src: "https://cdn.simpleicons.org/nextdotjs" },
   { name: "React", src: "https://cdn.simpleicons.org/react" },
   { name: "WordPress", src: "https://cdn.simpleicons.org/wordpress" },
   { name: "MongoDB", src: "https://cdn.simpleicons.org/mongodb" },
